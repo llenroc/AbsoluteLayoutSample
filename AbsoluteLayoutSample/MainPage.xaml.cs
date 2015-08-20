@@ -54,8 +54,6 @@ namespace AbsoluteLayoutSample
 			AbsoluteLayout.SetLayoutBounds(box, new Rectangle(x, 0f, .25, .25));
 			AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(x, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
-			AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(x, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
-
 			while(x <= 1.0)
 			{
 				if(Math.Round(x, 2) == 0f)
