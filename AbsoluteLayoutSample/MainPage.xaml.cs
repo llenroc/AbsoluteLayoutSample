@@ -29,6 +29,7 @@ namespace AbsoluteLayoutSample
 			float h = 0.0f;
 
 			AbsoluteLayout.SetLayoutBounds(box, new Rectangle(0f, 0f, w, h));
+			AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(.5, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
 			while(w <= 1.0)
 			{
