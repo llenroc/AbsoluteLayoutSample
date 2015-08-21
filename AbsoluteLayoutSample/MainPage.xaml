@@ -2,23 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AbsoluteLayoutSample.MainPage">
 	<ContentPage.Content>
 
-		<AbsoluteLayout x:Name="absLayout" Padding="0" BackgroundColor="#91E2F4" VerticalOptions="Fill" HorizontalOptions="Fill">
+		<Grid BackgroundColor="#CFEFA7">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="40" />
+			</Grid.RowDefinitions>
 
-			<AbsoluteLayout x:Name="box" BackgroundColor="#2C7797" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,.25,.25">
-				<BoxView x:Name="anchorVert" BackgroundColor="White" WidthRequest="4" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="XProportional" />
+			<AbsoluteLayout x:Name="absLayout" Padding="0" VerticalOptions="Fill" HorizontalOptions="Fill">
+				<AbsoluteLayout x:Name="box" BackgroundColor="#B3E770" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,.25,.5">
+					<BoxView x:Name="anchorVert" BackgroundColor="White" WidthRequest="4" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="XProportional" />
+				</AbsoluteLayout>
+
+				<StackLayout Spacing="10" Padding="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5">
+					<Label x:Name="status" FontSize="Medium" TextColor="#5A8622" XAlign="Center" />
+					<Label x:Name="coords" FontSize="Small" TextColor="#5A8622" XAlign="Center" />
+					<Label x:Name="flagsBounds" FontSize="Small" TextColor="#5A8622" XAlign="Center" />
+				</StackLayout>
 			</AbsoluteLayout>
 
-			<StackLayout Spacing="5" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds=".5,.5">
-				<Label x:Name="coords" FontSize="Medium" TextColor="White" XAlign="Center" />
-				<Label x:Name="label" FontSize="Medium" TextColor="White" XAlign="Center" />
-			</StackLayout>
+			<StackLayout Grid.Row="1" Spacing="1" Orientation="Horizontal">
+				<Button x:Name="btnPos" Text="Change Position" HorizontalOptions="FillAndExpand" BackgroundColor="#5A8622"
+					BorderRadius="0" Clicked="HandlePosition" TextColor="White" />
 
-			<StackLayout Spacing="1" HorizontalOptions="FillAndExpand" Orientation="Horizontal"
-				 AbsoluteLayout.LayoutFlags="YProportional" AbsoluteLayout.LayoutBounds="1,1">
-				<Button x:Name="btnPos" Text="Position" HorizontalOptions="Fill" BackgroundColor="#3000" HeightRequest="30" Clicked="HandlePosition" WidthRequest="100" />
-				<Button x:Name="btnSize" Text="Size" HorizontalOptions="Fill" BackgroundColor="#3000" HeightRequest="30" Clicked="HandleSize" WidthRequest="100" />
+				<Button x:Name="btnSize" Text="Change Size" HorizontalOptions="FillAndExpand" BackgroundColor="#5A8622"
+					BorderRadius="0" Clicked="HandleSize" TextColor="White" />
 			</StackLayout>
+		</Grid>
 
-		</AbsoluteLayout>
 	</ContentPage.Content>
 </ContentPage>

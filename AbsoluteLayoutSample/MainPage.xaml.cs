@@ -9,6 +9,8 @@ namespace AbsoluteLayoutSample
 		public MainPage()
 		{
 			InitializeComponent();
+			status.Text = "the anchor point of a child is interpollated based on its position\n\n" +
+			"the white vertical line represents the X anchor point";
 		}
 
 		public void HandlePosition(object sender, EventArgs e)
@@ -33,13 +35,33 @@ namespace AbsoluteLayoutSample
 
 			while(w <= 1.0)
 			{
+				if(Math.Round(w, 2) == 0f)
+				{
+					status.Text = "Anchor point is far left";
+					await Task.Delay(3000);
+				}
+
+				if(Math.Round(w, 2) == 0.5f)
+				{
+					status.Text = "Anchor point is in the center";
+					await Task.Delay(3000);
+				}
+
+				if(Math.Round(w, 2) == 1f)
+				{
+					await Task.Delay(3000);
+					break;
+				}
+
 				w += .01f;
 				h += .01f;
+
 				AbsoluteLayout.SetLayoutBounds(box, new Rectangle(0f, 0f, w, h));
 				AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(.5, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+				flagsBounds.Text = string.Format("Flags=\"All\" Bounds=\"0, 0, {0}, {1}\"", Math.Round(w, 2), Math.Round(h, 2));
 
 				UpdateLabel();
-				label.Text = string.Empty;
+				status.Text = " ";
 
 				await Task.Delay(50);
 			}
@@ -52,35 +74,37 @@ namespace AbsoluteLayoutSample
 			ToggleEnabled(false);
 
 			float x = 0.0f;
-			AbsoluteLayout.SetLayoutBounds(box, new Rectangle(x, 0f, .25, .25));
+			AbsoluteLayout.SetLayoutBounds(box, new Rectangle(x, 0f, .25, .5));
 			AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(x, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
 			while(x <= 1.0)
 			{
 				if(Math.Round(x, 2) == 0f)
 				{
-					label.Text = "Anchor point is far left";
+					status.Text = "Anchor point is far left";
 					await Task.Delay(3000);
 				}
 
 				if(Math.Round(x, 2) == 0.5f)
 				{
-					label.Text = "Anchor point is in the middle";
+					status.Text = "Anchor point is in the center";
 					await Task.Delay(3000);
 				}
 
 				if(Math.Round(x, 2) == 1f)
 				{
-					label.Text = "Anchor point is far right";
+					status.Text = "Anchor point is far right";
 					await Task.Delay(3000);
+					break;
 				}
 
 				x += .01f;
+				flagsBounds.Text = string.Format("Flags=\"All\" Bounds=\"{0}, 0, .25, .25\"", Math.Round(x, 2));
 				AbsoluteLayout.SetLayoutBounds(box, new Rectangle(x, 0f, .25, .25));
 				AbsoluteLayout.SetLayoutBounds(anchorVert, new Rectangle(x, 0f, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
 				UpdateLabel();
-				label.Text = string.Empty;
+				status.Text = " ";
 
 				await Task.Delay(50);
 			}
